@@ -45,7 +45,7 @@ def add_player_to_room(node_address, player_uuid):
 
 def start_game(node_address):
     firebase_node = firebase_application.get('/gamerooms/'+node_address, None)
-    firebase_application.put('/gamerooms/'+node_address, 'game_status', 'started')
+    firebase_application.put('/gamerooms/'+node_address, 'game_status', 'waiting_for_ready')
     cards = shuffle_cards(CARD_CODES)
     for each_player in firebase_node['player_order']:
         cards_for_player = random.sample(cards, 4)
