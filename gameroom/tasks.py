@@ -60,6 +60,7 @@ def start_game(node_address):
 def find_winner(node_address, room_uuid):
     game_room = game_room_utils.get_game_room_by_uuid(room_uuid)
     player_status = firebase_application.get('/gamerooms/'+node_address, 'player_status')
+    player_info = firebase_application.get('/gamerooms/'+node_address, 'player_info')
     player_points = dict()
     winner_points = 1000
     winner = ""
@@ -68,7 +69,9 @@ def find_winner(node_address, room_uuid):
         for each_card in player_status[each_player].get('cards'):
             points+=CARD_VALUES[each_card]
         player_status[each_player]['points'] = points
+        player_info[each_player]['points'] = points
         player_points[each_player] = points
+        
         if points<winner_points:
             winner = each_player
             winner_points = points
@@ -78,5 +81,6 @@ def find_winner(node_address, room_uuid):
     game_room.save()
     firebase_application.put('/gamerooms/'+node_address, 'player_status', player_status)
     firebase_application.put('/gamerooms/'+node_address, 'game_status', 'completed')
+    firebase_application.put('/gamerooms/'+node_address, 'player_info', player_info)
 
     
