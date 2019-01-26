@@ -93,8 +93,8 @@ TEMPLATES = [
     },
 ]
 AUTHENTICATION_BACKENDS = (
-	# 'social.backends.google.GooglePlusAuth',
-	# 'social.backends.google.GoogleOAuth2',
+	'social.backends.google.GooglePlusAuth',
+	'social.backends.google.GoogleOAuth2',
 	'social.backends.facebook.FacebookAppOAuth2',
 	'social.backends.facebook.FacebookOAuth2',
 	'rest_framework_social_oauth2.backends.DjangoOAuth2',
@@ -122,6 +122,29 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'public_profile','id']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 	'fields': 'id, email, name, first_name, last_name, age_range, picture.type(large), gender'
 }
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '338150241996-ao6ts4cgs1ib85ttuv6mubslb0244tso.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Fq4tevX2R-KjY48a8ZKKinxL'
+# Google OAuth2 (google-oauth2)
+SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+	'https://www.googleapis.com/auth/userinfo.email',
+	'https://www.googleapis.com/auth/userinfo.profile'
+]
+
+# Google+ SignIn (google-plus)
+SOCIAL_AUTH_GOOGLE_PLUS_KEY = '338150241996-ao6ts4cgs1ib85ttuv6mubslb0244tso.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_PLUS_SECRET = 'Fq4tevX2R-KjY48a8ZKKinxL'
+SOCIAL_AUTH_GOOGLE_PLUS_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
+	'https://www.googleapis.com/auth/plus.login',
+	'https://www.googleapis.com/auth/userinfo.email',
+	'https://www.googleapis.com/auth/userinfo.profile'
+]
+
+SOCIAL_AUTH_GOOGLE_PLUS_AUTH_EXTRA_ARGUMENTS = {
+      'access_type': 'offline'
+}
+
 WSGI_APPLICATION = 'cabo_backend.wsgi.application'
 
 
